@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package expensebill.v1;
+
+option go_package = "github.com/itsLeonB/stortr-protos/gen/go/expensebill/v1;expensebill";
+
+message UploadStreamRequest {
+  oneof data {
+    BillMetadata bill_metadata = 1;
+    bytes chunk = 2;
+  }
+}
+
+message BillMetadata {
+  string content_type = 3;
+  string filename = 4;
+  int64 file_size = 5;
+}
+
+message UploadStreamResponse {
+  string object_key = 1;
+}
+
+message GetUrlRequest {
+  string object_key = 1;
+}
+
+message GetUrlResponse {
+  string url = 1;
+}
+
+message DeleteRequest {
+  string object_key = 1;
+}
