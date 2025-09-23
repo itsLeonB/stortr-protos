@@ -1,13 +1,13 @@
 syntax = "proto3";
 
-package expensebill.v1;
+package uploadbill.v1;
 
-import "expensebill/v1/expense_bill_message.proto";
 import "google/protobuf/empty.proto";
+import "uploadbill/v1/upload_bill_message.proto";
 
-option go_package = "github.com/itsLeonB/stortr-protos/gen/go/expensebill/v1;expensebill";
+option go_package = "github.com/itsLeonB/stortr-protos/gen/go/uploadbill/v1;uploadbill";
 
-service ExpenseBillService {
+service UploadBillService {
   rpc UploadStream(stream UploadStreamRequest) returns (UploadStreamResponse);
   rpc GetUrl(GetUrlRequest) returns (GetUrlResponse);
   rpc Delete(DeleteRequest) returns (google.protobuf.Empty);
