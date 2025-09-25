@@ -5,10 +5,9 @@ package genericupload.v1;
 option go_package = "github.com/itsLeonB/stortr-protos/gen/go/genericupload/v1;genericupload";
 
 message Metadata {
-  string content_type = 1;
-  string bucket_name = 2;
-  string object_key = 3;
-  int64 file_size = 4;
+  FileIdentifier file_identifier = 1;
+  string content_type = 2;
+  int64 file_size = 3;
 }
 
 message FileIdentifier {

@@ -22,13 +22,12 @@ const (
 )
 
 type Metadata struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ContentType   string                 `protobuf:"bytes,1,opt,name=content_type,json=contentType,proto3" json:"content_type,omitempty"`
-	BucketName    string                 `protobuf:"bytes,2,opt,name=bucket_name,json=bucketName,proto3" json:"bucket_name,omitempty"`
-	ObjectKey     string                 `protobuf:"bytes,3,opt,name=object_key,json=objectKey,proto3" json:"object_key,omitempty"`
-	FileSize      int64                  `protobuf:"varint,4,opt,name=file_size,json=fileSize,proto3" json:"file_size,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	FileIdentifier *FileIdentifier        `protobuf:"bytes,1,opt,name=file_identifier,json=fileIdentifier,proto3" json:"file_identifier,omitempty"`
+	ContentType    string                 `protobuf:"bytes,2,opt,name=content_type,json=contentType,proto3" json:"content_type,omitempty"`
+	FileSize       int64                  `protobuf:"varint,3,opt,name=file_size,json=fileSize,proto3" json:"file_size,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *Metadata) Reset() {
@@ -61,23 +60,16 @@ func (*Metadata) Descriptor() ([]byte, []int) {
 	return file_genericupload_v1_generic_upload_domain_proto_rawDescGZIP(), []int{0}
 }
 
+func (x *Metadata) GetFileIdentifier() *FileIdentifier {
+	if x != nil {
+		return x.FileIdentifier
+	}
+	return nil
+}
+
 func (x *Metadata) GetContentType() string {
 	if x != nil {
 		return x.ContentType
-	}
-	return ""
-}
-
-func (x *Metadata) GetBucketName() string {
-	if x != nil {
-		return x.BucketName
-	}
-	return ""
-}
-
-func (x *Metadata) GetObjectKey() string {
-	if x != nil {
-		return x.ObjectKey
 	}
 	return ""
 }
@@ -145,14 +137,11 @@ var File_genericupload_v1_generic_upload_domain_proto protoreflect.FileDescripto
 
 const file_genericupload_v1_generic_upload_domain_proto_rawDesc = "" +
 	"\n" +
-	",genericupload/v1/generic_upload_domain.proto\x12\x10genericupload.v1\"\x8a\x01\n" +
-	"\bMetadata\x12!\n" +
-	"\fcontent_type\x18\x01 \x01(\tR\vcontentType\x12\x1f\n" +
-	"\vbucket_name\x18\x02 \x01(\tR\n" +
-	"bucketName\x12\x1d\n" +
-	"\n" +
-	"object_key\x18\x03 \x01(\tR\tobjectKey\x12\x1b\n" +
-	"\tfile_size\x18\x04 \x01(\x03R\bfileSize\"P\n" +
+	",genericupload/v1/generic_upload_domain.proto\x12\x10genericupload.v1\"\x95\x01\n" +
+	"\bMetadata\x12I\n" +
+	"\x0ffile_identifier\x18\x01 \x01(\v2 .genericupload.v1.FileIdentifierR\x0efileIdentifier\x12!\n" +
+	"\fcontent_type\x18\x02 \x01(\tR\vcontentType\x12\x1b\n" +
+	"\tfile_size\x18\x03 \x01(\x03R\bfileSize\"P\n" +
 	"\x0eFileIdentifier\x12\x1f\n" +
 	"\vbucket_name\x18\x01 \x01(\tR\n" +
 	"bucketName\x12\x1d\n" +
@@ -177,11 +166,12 @@ var file_genericupload_v1_generic_upload_domain_proto_goTypes = []any{
 	(*FileIdentifier)(nil), // 1: genericupload.v1.FileIdentifier
 }
 var file_genericupload_v1_generic_upload_domain_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	1, // 0: genericupload.v1.Metadata.file_identifier:type_name -> genericupload.v1.FileIdentifier
+	1, // [1:1] is the sub-list for method output_type
+	1, // [1:1] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_genericupload_v1_generic_upload_domain_proto_init() }
