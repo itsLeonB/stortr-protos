@@ -105,9 +105,9 @@ func (*UploadStreamRequest_Chunk) isUploadStreamRequest_Data() {}
 
 type Metadata struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	ContentType   string                 `protobuf:"bytes,3,opt,name=content_type,json=contentType,proto3" json:"content_type,omitempty"`
-	Filename      string                 `protobuf:"bytes,4,opt,name=filename,proto3" json:"filename,omitempty"`
-	FileSize      int64                  `protobuf:"varint,5,opt,name=file_size,json=fileSize,proto3" json:"file_size,omitempty"`
+	ContentType   string                 `protobuf:"bytes,1,opt,name=content_type,json=contentType,proto3" json:"content_type,omitempty"`
+	ObjectKey     string                 `protobuf:"bytes,2,opt,name=object_key,json=objectKey,proto3" json:"object_key,omitempty"`
+	FileSize      int64                  `protobuf:"varint,3,opt,name=file_size,json=fileSize,proto3" json:"file_size,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -149,9 +149,9 @@ func (x *Metadata) GetContentType() string {
 	return ""
 }
 
-func (x *Metadata) GetFilename() string {
+func (x *Metadata) GetObjectKey() string {
 	if x != nil {
-		return x.Filename
+		return x.ObjectKey
 	}
 	return ""
 }
@@ -347,11 +347,12 @@ const file_imageupload_v1_image_upload_message_proto_rawDesc = "" +
 	"\x13UploadStreamRequest\x126\n" +
 	"\bmetadata\x18\x01 \x01(\v2\x18.imageupload.v1.MetadataH\x00R\bmetadata\x12\x16\n" +
 	"\x05chunk\x18\x02 \x01(\fH\x00R\x05chunkB\x06\n" +
-	"\x04data\"f\n" +
+	"\x04data\"i\n" +
 	"\bMetadata\x12!\n" +
-	"\fcontent_type\x18\x03 \x01(\tR\vcontentType\x12\x1a\n" +
-	"\bfilename\x18\x04 \x01(\tR\bfilename\x12\x1b\n" +
-	"\tfile_size\x18\x05 \x01(\x03R\bfileSize\"(\n" +
+	"\fcontent_type\x18\x01 \x01(\tR\vcontentType\x12\x1d\n" +
+	"\n" +
+	"object_key\x18\x02 \x01(\tR\tobjectKey\x12\x1b\n" +
+	"\tfile_size\x18\x03 \x01(\x03R\bfileSize\"(\n" +
 	"\x14UploadStreamResponse\x12\x10\n" +
 	"\x03uri\x18\x01 \x01(\tR\x03uri\".\n" +
 	"\rGetUrlRequest\x12\x1d\n" +

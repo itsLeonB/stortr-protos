@@ -1,12 +1,20 @@
 .PHONY:
 	help
+	gen-fresh
 	install-pre-push-hook
 	uninstall-pre-push-hook
 
 help:
 	@echo "Makefile commands:"
+	@echo "  make gen-fresh               - Generate fresh code using buf"
 	@echo "  make install-pre-push-hook   - Install the pre-push git hook"
 	@echo "  make uninstall-pre-push-hook - Uninstall the pre-push git hook"
+
+gen-fresh:
+	@echo "Generating fresh code..."
+	@rm -rf ./gen
+	@buf generate
+	@echo "Code generation completed."
 
 install-pre-push-hook:
 	@echo "Installing pre-push git hook..."

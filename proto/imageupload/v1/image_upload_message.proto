@@ -12,9 +12,9 @@ message UploadStreamRequest {
 }
 
 message Metadata {
-  string content_type = 3;
-  string filename = 4;
-  int64 file_size = 5;
+  string content_type = 1;
+  string object_key = 2;
+  int64 file_size = 3;
 }
 
 message UploadStreamResponse {
