@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.9
 // 	protoc        (unknown)
-// source: uploadbill/v1/upload_bill_message.proto
+// source: imageupload/v1/image_upload_message.proto
 
-package uploadbill
+package imageupload
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -25,7 +25,7 @@ type UploadStreamRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Types that are valid to be assigned to Data:
 	//
-	//	*UploadStreamRequest_BillMetadata
+	//	*UploadStreamRequest_Metadata
 	//	*UploadStreamRequest_Chunk
 	Data          isUploadStreamRequest_Data `protobuf_oneof:"data"`
 	unknownFields protoimpl.UnknownFields
@@ -34,7 +34,7 @@ type UploadStreamRequest struct {
 
 func (x *UploadStreamRequest) Reset() {
 	*x = UploadStreamRequest{}
-	mi := &file_uploadbill_v1_upload_bill_message_proto_msgTypes[0]
+	mi := &file_imageupload_v1_image_upload_message_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -46,7 +46,7 @@ func (x *UploadStreamRequest) String() string {
 func (*UploadStreamRequest) ProtoMessage() {}
 
 func (x *UploadStreamRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_uploadbill_v1_upload_bill_message_proto_msgTypes[0]
+	mi := &file_imageupload_v1_image_upload_message_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -59,7 +59,7 @@ func (x *UploadStreamRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UploadStreamRequest.ProtoReflect.Descriptor instead.
 func (*UploadStreamRequest) Descriptor() ([]byte, []int) {
-	return file_uploadbill_v1_upload_bill_message_proto_rawDescGZIP(), []int{0}
+	return file_imageupload_v1_image_upload_message_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *UploadStreamRequest) GetData() isUploadStreamRequest_Data {
@@ -69,10 +69,10 @@ func (x *UploadStreamRequest) GetData() isUploadStreamRequest_Data {
 	return nil
 }
 
-func (x *UploadStreamRequest) GetBillMetadata() *BillMetadata {
+func (x *UploadStreamRequest) GetMetadata() *Metadata {
 	if x != nil {
-		if x, ok := x.Data.(*UploadStreamRequest_BillMetadata); ok {
-			return x.BillMetadata
+		if x, ok := x.Data.(*UploadStreamRequest_Metadata); ok {
+			return x.Metadata
 		}
 	}
 	return nil
@@ -91,19 +91,19 @@ type isUploadStreamRequest_Data interface {
 	isUploadStreamRequest_Data()
 }
 
-type UploadStreamRequest_BillMetadata struct {
-	BillMetadata *BillMetadata `protobuf:"bytes,1,opt,name=bill_metadata,json=billMetadata,proto3,oneof"`
+type UploadStreamRequest_Metadata struct {
+	Metadata *Metadata `protobuf:"bytes,1,opt,name=metadata,proto3,oneof"`
 }
 
 type UploadStreamRequest_Chunk struct {
 	Chunk []byte `protobuf:"bytes,2,opt,name=chunk,proto3,oneof"`
 }
 
-func (*UploadStreamRequest_BillMetadata) isUploadStreamRequest_Data() {}
+func (*UploadStreamRequest_Metadata) isUploadStreamRequest_Data() {}
 
 func (*UploadStreamRequest_Chunk) isUploadStreamRequest_Data() {}
 
-type BillMetadata struct {
+type Metadata struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ContentType   string                 `protobuf:"bytes,3,opt,name=content_type,json=contentType,proto3" json:"content_type,omitempty"`
 	Filename      string                 `protobuf:"bytes,4,opt,name=filename,proto3" json:"filename,omitempty"`
@@ -112,21 +112,21 @@ type BillMetadata struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *BillMetadata) Reset() {
-	*x = BillMetadata{}
-	mi := &file_uploadbill_v1_upload_bill_message_proto_msgTypes[1]
+func (x *Metadata) Reset() {
+	*x = Metadata{}
+	mi := &file_imageupload_v1_image_upload_message_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *BillMetadata) String() string {
+func (x *Metadata) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*BillMetadata) ProtoMessage() {}
+func (*Metadata) ProtoMessage() {}
 
-func (x *BillMetadata) ProtoReflect() protoreflect.Message {
-	mi := &file_uploadbill_v1_upload_bill_message_proto_msgTypes[1]
+func (x *Metadata) ProtoReflect() protoreflect.Message {
+	mi := &file_imageupload_v1_image_upload_message_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -137,26 +137,26 @@ func (x *BillMetadata) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use BillMetadata.ProtoReflect.Descriptor instead.
-func (*BillMetadata) Descriptor() ([]byte, []int) {
-	return file_uploadbill_v1_upload_bill_message_proto_rawDescGZIP(), []int{1}
+// Deprecated: Use Metadata.ProtoReflect.Descriptor instead.
+func (*Metadata) Descriptor() ([]byte, []int) {
+	return file_imageupload_v1_image_upload_message_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *BillMetadata) GetContentType() string {
+func (x *Metadata) GetContentType() string {
 	if x != nil {
 		return x.ContentType
 	}
 	return ""
 }
 
-func (x *BillMetadata) GetFilename() string {
+func (x *Metadata) GetFilename() string {
 	if x != nil {
 		return x.Filename
 	}
 	return ""
 }
 
-func (x *BillMetadata) GetFileSize() int64 {
+func (x *Metadata) GetFileSize() int64 {
 	if x != nil {
 		return x.FileSize
 	}
@@ -165,14 +165,14 @@ func (x *BillMetadata) GetFileSize() int64 {
 
 type UploadStreamResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	ObjectKey     string                 `protobuf:"bytes,1,opt,name=object_key,json=objectKey,proto3" json:"object_key,omitempty"`
+	Uri           string                 `protobuf:"bytes,1,opt,name=uri,proto3" json:"uri,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *UploadStreamResponse) Reset() {
 	*x = UploadStreamResponse{}
-	mi := &file_uploadbill_v1_upload_bill_message_proto_msgTypes[2]
+	mi := &file_imageupload_v1_image_upload_message_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -184,7 +184,7 @@ func (x *UploadStreamResponse) String() string {
 func (*UploadStreamResponse) ProtoMessage() {}
 
 func (x *UploadStreamResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_uploadbill_v1_upload_bill_message_proto_msgTypes[2]
+	mi := &file_imageupload_v1_image_upload_message_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -197,12 +197,12 @@ func (x *UploadStreamResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UploadStreamResponse.ProtoReflect.Descriptor instead.
 func (*UploadStreamResponse) Descriptor() ([]byte, []int) {
-	return file_uploadbill_v1_upload_bill_message_proto_rawDescGZIP(), []int{2}
+	return file_imageupload_v1_image_upload_message_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *UploadStreamResponse) GetObjectKey() string {
+func (x *UploadStreamResponse) GetUri() string {
 	if x != nil {
-		return x.ObjectKey
+		return x.Uri
 	}
 	return ""
 }
@@ -216,7 +216,7 @@ type GetUrlRequest struct {
 
 func (x *GetUrlRequest) Reset() {
 	*x = GetUrlRequest{}
-	mi := &file_uploadbill_v1_upload_bill_message_proto_msgTypes[3]
+	mi := &file_imageupload_v1_image_upload_message_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -228,7 +228,7 @@ func (x *GetUrlRequest) String() string {
 func (*GetUrlRequest) ProtoMessage() {}
 
 func (x *GetUrlRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_uploadbill_v1_upload_bill_message_proto_msgTypes[3]
+	mi := &file_imageupload_v1_image_upload_message_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -241,7 +241,7 @@ func (x *GetUrlRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUrlRequest.ProtoReflect.Descriptor instead.
 func (*GetUrlRequest) Descriptor() ([]byte, []int) {
-	return file_uploadbill_v1_upload_bill_message_proto_rawDescGZIP(), []int{3}
+	return file_imageupload_v1_image_upload_message_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *GetUrlRequest) GetObjectKey() string {
@@ -260,7 +260,7 @@ type GetUrlResponse struct {
 
 func (x *GetUrlResponse) Reset() {
 	*x = GetUrlResponse{}
-	mi := &file_uploadbill_v1_upload_bill_message_proto_msgTypes[4]
+	mi := &file_imageupload_v1_image_upload_message_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -272,7 +272,7 @@ func (x *GetUrlResponse) String() string {
 func (*GetUrlResponse) ProtoMessage() {}
 
 func (x *GetUrlResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_uploadbill_v1_upload_bill_message_proto_msgTypes[4]
+	mi := &file_imageupload_v1_image_upload_message_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -285,7 +285,7 @@ func (x *GetUrlResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUrlResponse.ProtoReflect.Descriptor instead.
 func (*GetUrlResponse) Descriptor() ([]byte, []int) {
-	return file_uploadbill_v1_upload_bill_message_proto_rawDescGZIP(), []int{4}
+	return file_imageupload_v1_image_upload_message_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GetUrlResponse) GetUrl() string {
@@ -304,7 +304,7 @@ type DeleteRequest struct {
 
 func (x *DeleteRequest) Reset() {
 	*x = DeleteRequest{}
-	mi := &file_uploadbill_v1_upload_bill_message_proto_msgTypes[5]
+	mi := &file_imageupload_v1_image_upload_message_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -316,7 +316,7 @@ func (x *DeleteRequest) String() string {
 func (*DeleteRequest) ProtoMessage() {}
 
 func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_uploadbill_v1_upload_bill_message_proto_msgTypes[5]
+	mi := &file_imageupload_v1_image_upload_message_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -329,7 +329,7 @@ func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRequest) Descriptor() ([]byte, []int) {
-	return file_uploadbill_v1_upload_bill_message_proto_rawDescGZIP(), []int{5}
+	return file_imageupload_v1_image_upload_message_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *DeleteRequest) GetObjectKey() string {
@@ -339,22 +339,21 @@ func (x *DeleteRequest) GetObjectKey() string {
 	return ""
 }
 
-var File_uploadbill_v1_upload_bill_message_proto protoreflect.FileDescriptor
+var File_imageupload_v1_image_upload_message_proto protoreflect.FileDescriptor
 
-const file_uploadbill_v1_upload_bill_message_proto_rawDesc = "" +
+const file_imageupload_v1_image_upload_message_proto_rawDesc = "" +
 	"\n" +
-	"'uploadbill/v1/upload_bill_message.proto\x12\ruploadbill.v1\"y\n" +
-	"\x13UploadStreamRequest\x12B\n" +
-	"\rbill_metadata\x18\x01 \x01(\v2\x1b.uploadbill.v1.BillMetadataH\x00R\fbillMetadata\x12\x16\n" +
+	")imageupload/v1/image_upload_message.proto\x12\x0eimageupload.v1\"m\n" +
+	"\x13UploadStreamRequest\x126\n" +
+	"\bmetadata\x18\x01 \x01(\v2\x18.imageupload.v1.MetadataH\x00R\bmetadata\x12\x16\n" +
 	"\x05chunk\x18\x02 \x01(\fH\x00R\x05chunkB\x06\n" +
-	"\x04data\"j\n" +
-	"\fBillMetadata\x12!\n" +
+	"\x04data\"f\n" +
+	"\bMetadata\x12!\n" +
 	"\fcontent_type\x18\x03 \x01(\tR\vcontentType\x12\x1a\n" +
 	"\bfilename\x18\x04 \x01(\tR\bfilename\x12\x1b\n" +
-	"\tfile_size\x18\x05 \x01(\x03R\bfileSize\"5\n" +
-	"\x14UploadStreamResponse\x12\x1d\n" +
-	"\n" +
-	"object_key\x18\x01 \x01(\tR\tobjectKey\".\n" +
+	"\tfile_size\x18\x05 \x01(\x03R\bfileSize\"(\n" +
+	"\x14UploadStreamResponse\x12\x10\n" +
+	"\x03uri\x18\x01 \x01(\tR\x03uri\".\n" +
 	"\rGetUrlRequest\x12\x1d\n" +
 	"\n" +
 	"object_key\x18\x01 \x01(\tR\tobjectKey\"\"\n" +
@@ -362,31 +361,31 @@ const file_uploadbill_v1_upload_bill_message_proto_rawDesc = "" +
 	"\x03url\x18\x01 \x01(\tR\x03url\".\n" +
 	"\rDeleteRequest\x12\x1d\n" +
 	"\n" +
-	"object_key\x18\x01 \x01(\tR\tobjectKeyBCZAgithub.com/itsLeonB/stortr-protos/gen/go/uploadbill/v1;uploadbillb\x06proto3"
+	"object_key\x18\x01 \x01(\tR\tobjectKeyBEZCgithub.com/itsLeonB/stortr-protos/gen/go/imageupload/v1;imageuploadb\x06proto3"
 
 var (
-	file_uploadbill_v1_upload_bill_message_proto_rawDescOnce sync.Once
-	file_uploadbill_v1_upload_bill_message_proto_rawDescData []byte
+	file_imageupload_v1_image_upload_message_proto_rawDescOnce sync.Once
+	file_imageupload_v1_image_upload_message_proto_rawDescData []byte
 )
 
-func file_uploadbill_v1_upload_bill_message_proto_rawDescGZIP() []byte {
-	file_uploadbill_v1_upload_bill_message_proto_rawDescOnce.Do(func() {
-		file_uploadbill_v1_upload_bill_message_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_uploadbill_v1_upload_bill_message_proto_rawDesc), len(file_uploadbill_v1_upload_bill_message_proto_rawDesc)))
+func file_imageupload_v1_image_upload_message_proto_rawDescGZIP() []byte {
+	file_imageupload_v1_image_upload_message_proto_rawDescOnce.Do(func() {
+		file_imageupload_v1_image_upload_message_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_imageupload_v1_image_upload_message_proto_rawDesc), len(file_imageupload_v1_image_upload_message_proto_rawDesc)))
 	})
-	return file_uploadbill_v1_upload_bill_message_proto_rawDescData
+	return file_imageupload_v1_image_upload_message_proto_rawDescData
 }
 
-var file_uploadbill_v1_upload_bill_message_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
-var file_uploadbill_v1_upload_bill_message_proto_goTypes = []any{
-	(*UploadStreamRequest)(nil),  // 0: uploadbill.v1.UploadStreamRequest
-	(*BillMetadata)(nil),         // 1: uploadbill.v1.BillMetadata
-	(*UploadStreamResponse)(nil), // 2: uploadbill.v1.UploadStreamResponse
-	(*GetUrlRequest)(nil),        // 3: uploadbill.v1.GetUrlRequest
-	(*GetUrlResponse)(nil),       // 4: uploadbill.v1.GetUrlResponse
-	(*DeleteRequest)(nil),        // 5: uploadbill.v1.DeleteRequest
+var file_imageupload_v1_image_upload_message_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_imageupload_v1_image_upload_message_proto_goTypes = []any{
+	(*UploadStreamRequest)(nil),  // 0: imageupload.v1.UploadStreamRequest
+	(*Metadata)(nil),             // 1: imageupload.v1.Metadata
+	(*UploadStreamResponse)(nil), // 2: imageupload.v1.UploadStreamResponse
+	(*GetUrlRequest)(nil),        // 3: imageupload.v1.GetUrlRequest
+	(*GetUrlResponse)(nil),       // 4: imageupload.v1.GetUrlResponse
+	(*DeleteRequest)(nil),        // 5: imageupload.v1.DeleteRequest
 }
-var file_uploadbill_v1_upload_bill_message_proto_depIdxs = []int32{
-	1, // 0: uploadbill.v1.UploadStreamRequest.bill_metadata:type_name -> uploadbill.v1.BillMetadata
+var file_imageupload_v1_image_upload_message_proto_depIdxs = []int32{
+	1, // 0: imageupload.v1.UploadStreamRequest.metadata:type_name -> imageupload.v1.Metadata
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
@@ -394,30 +393,30 @@ var file_uploadbill_v1_upload_bill_message_proto_depIdxs = []int32{
 	0, // [0:1] is the sub-list for field type_name
 }
 
-func init() { file_uploadbill_v1_upload_bill_message_proto_init() }
-func file_uploadbill_v1_upload_bill_message_proto_init() {
-	if File_uploadbill_v1_upload_bill_message_proto != nil {
+func init() { file_imageupload_v1_image_upload_message_proto_init() }
+func file_imageupload_v1_image_upload_message_proto_init() {
+	if File_imageupload_v1_image_upload_message_proto != nil {
 		return
 	}
-	file_uploadbill_v1_upload_bill_message_proto_msgTypes[0].OneofWrappers = []any{
-		(*UploadStreamRequest_BillMetadata)(nil),
+	file_imageupload_v1_image_upload_message_proto_msgTypes[0].OneofWrappers = []any{
+		(*UploadStreamRequest_Metadata)(nil),
 		(*UploadStreamRequest_Chunk)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_uploadbill_v1_upload_bill_message_proto_rawDesc), len(file_uploadbill_v1_upload_bill_message_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_imageupload_v1_image_upload_message_proto_rawDesc), len(file_imageupload_v1_image_upload_message_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_uploadbill_v1_upload_bill_message_proto_goTypes,
-		DependencyIndexes: file_uploadbill_v1_upload_bill_message_proto_depIdxs,
-		MessageInfos:      file_uploadbill_v1_upload_bill_message_proto_msgTypes,
+		GoTypes:           file_imageupload_v1_image_upload_message_proto_goTypes,
+		DependencyIndexes: file_imageupload_v1_image_upload_message_proto_depIdxs,
+		MessageInfos:      file_imageupload_v1_image_upload_message_proto_msgTypes,
 	}.Build()
-	File_uploadbill_v1_upload_bill_message_proto = out.File
-	file_uploadbill_v1_upload_bill_message_proto_goTypes = nil
-	file_uploadbill_v1_upload_bill_message_proto_depIdxs = nil
+	File_imageupload_v1_image_upload_message_proto = out.File
+	file_imageupload_v1_image_upload_message_proto_goTypes = nil
+	file_imageupload_v1_image_upload_message_proto_depIdxs = nil
 }

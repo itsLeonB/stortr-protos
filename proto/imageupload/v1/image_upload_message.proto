@@ -1,24 +1,24 @@
 syntax = "proto3";
 
-package uploadbill.v1;
+package imageupload.v1;
 
-option go_package = "github.com/itsLeonB/stortr-protos/gen/go/uploadbill/v1;uploadbill";
+option go_package = "github.com/itsLeonB/stortr-protos/gen/go/imageupload/v1;imageupload";
 
 message UploadStreamRequest {
   oneof data {
-    BillMetadata bill_metadata = 1;
+    Metadata metadata = 1;
     bytes chunk = 2;
   }
 }
 
-message BillMetadata {
+message Metadata {
   string content_type = 3;
   string filename = 4;
   int64 file_size = 5;
 }
 
 message UploadStreamResponse {
-  string object_key = 1;
+  string uri = 1;
 }
 
 message GetUrlRequest {
