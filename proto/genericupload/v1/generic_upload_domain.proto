@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package genericupload.v1;
+
+option go_package = "github.com/itsLeonB/stortr-protos/gen/go/genericupload/v1;genericupload";
+
+message Metadata {
+  string content_type = 1;
+  string bucket_name = 2;
+  string object_key = 3;
+  int64 file_size = 4;
+}
+
+message FileIdentifier {
+  string bucket_name = 1;
+  string object_key = 2;
+}

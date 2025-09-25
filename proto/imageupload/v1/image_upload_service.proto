@@ -2,13 +2,13 @@ syntax = "proto3";
 
 package imageupload.v1;
 
+import "genericupload/v1/generic_upload_message.proto";
 import "google/protobuf/empty.proto";
-import "imageupload/v1/image_upload_message.proto";
 
 option go_package = "github.com/itsLeonB/stortr-protos/gen/go/imageupload/v1;imageupload";
 
 service ImageUploadService {
-  rpc UploadStream(stream UploadStreamRequest) returns (UploadStreamResponse);
-  rpc GetUrl(GetUrlRequest) returns (GetUrlResponse);
-  rpc Delete(DeleteRequest) returns (google.protobuf.Empty);
+  rpc UploadStream(stream genericupload.v1.UploadStreamRequest) returns (genericupload.v1.UploadStreamResponse);
+  rpc GetUrl(genericupload.v1.GetUrlRequest) returns (genericupload.v1.GetUrlResponse);
+  rpc Delete(genericupload.v1.DeleteRequest) returns (google.protobuf.Empty);
 }

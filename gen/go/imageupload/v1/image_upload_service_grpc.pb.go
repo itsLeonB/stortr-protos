@@ -8,6 +8,7 @@ package imageupload
 
 import (
 	context "context"
+	v1 "github.com/itsLeonB/stortr-protos/gen/go/genericupload/v1"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -29,9 +30,9 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ImageUploadServiceClient interface {
-	UploadStream(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[UploadStreamRequest, UploadStreamResponse], error)
-	GetUrl(ctx context.Context, in *GetUrlRequest, opts ...grpc.CallOption) (*GetUrlResponse, error)
-	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UploadStream(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[v1.UploadStreamRequest, v1.UploadStreamResponse], error)
+	GetUrl(ctx context.Context, in *v1.GetUrlRequest, opts ...grpc.CallOption) (*v1.GetUrlResponse, error)
+	Delete(ctx context.Context, in *v1.DeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type imageUploadServiceClient struct {
@@ -42,22 +43,22 @@ func NewImageUploadServiceClient(cc grpc.ClientConnInterface) ImageUploadService
 	return &imageUploadServiceClient{cc}
 }
 
-func (c *imageUploadServiceClient) UploadStream(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[UploadStreamRequest, UploadStreamResponse], error) {
+func (c *imageUploadServiceClient) UploadStream(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[v1.UploadStreamRequest, v1.UploadStreamResponse], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	stream, err := c.cc.NewStream(ctx, &ImageUploadService_ServiceDesc.Streams[0], ImageUploadService_UploadStream_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[UploadStreamRequest, UploadStreamResponse]{ClientStream: stream}
+	x := &grpc.GenericClientStream[v1.UploadStreamRequest, v1.UploadStreamResponse]{ClientStream: stream}
 	return x, nil
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type ImageUploadService_UploadStreamClient = grpc.ClientStreamingClient[UploadStreamRequest, UploadStreamResponse]
+type ImageUploadService_UploadStreamClient = grpc.ClientStreamingClient[v1.UploadStreamRequest, v1.UploadStreamResponse]
 
-func (c *imageUploadServiceClient) GetUrl(ctx context.Context, in *GetUrlRequest, opts ...grpc.CallOption) (*GetUrlResponse, error) {
+func (c *imageUploadServiceClient) GetUrl(ctx context.Context, in *v1.GetUrlRequest, opts ...grpc.CallOption) (*v1.GetUrlResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetUrlResponse)
+	out := new(v1.GetUrlResponse)
 	err := c.cc.Invoke(ctx, ImageUploadService_GetUrl_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -65,7 +66,7 @@ func (c *imageUploadServiceClient) GetUrl(ctx context.Context, in *GetUrlRequest
 	return out, nil
 }
 
-func (c *imageUploadServiceClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *imageUploadServiceClient) Delete(ctx context.Context, in *v1.DeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, ImageUploadService_Delete_FullMethodName, in, out, cOpts...)
@@ -79,9 +80,9 @@ func (c *imageUploadServiceClient) Delete(ctx context.Context, in *DeleteRequest
 // All implementations must embed UnimplementedImageUploadServiceServer
 // for forward compatibility.
 type ImageUploadServiceServer interface {
-	UploadStream(grpc.ClientStreamingServer[UploadStreamRequest, UploadStreamResponse]) error
-	GetUrl(context.Context, *GetUrlRequest) (*GetUrlResponse, error)
-	Delete(context.Context, *DeleteRequest) (*emptypb.Empty, error)
+	UploadStream(grpc.ClientStreamingServer[v1.UploadStreamRequest, v1.UploadStreamResponse]) error
+	GetUrl(context.Context, *v1.GetUrlRequest) (*v1.GetUrlResponse, error)
+	Delete(context.Context, *v1.DeleteRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedImageUploadServiceServer()
 }
 
@@ -92,13 +93,13 @@ type ImageUploadServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedImageUploadServiceServer struct{}
 
-func (UnimplementedImageUploadServiceServer) UploadStream(grpc.ClientStreamingServer[UploadStreamRequest, UploadStreamResponse]) error {
+func (UnimplementedImageUploadServiceServer) UploadStream(grpc.ClientStreamingServer[v1.UploadStreamRequest, v1.UploadStreamResponse]) error {
 	return status.Errorf(codes.Unimplemented, "method UploadStream not implemented")
 }
-func (UnimplementedImageUploadServiceServer) GetUrl(context.Context, *GetUrlRequest) (*GetUrlResponse, error) {
+func (UnimplementedImageUploadServiceServer) GetUrl(context.Context, *v1.GetUrlRequest) (*v1.GetUrlResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUrl not implemented")
 }
-func (UnimplementedImageUploadServiceServer) Delete(context.Context, *DeleteRequest) (*emptypb.Empty, error) {
+func (UnimplementedImageUploadServiceServer) Delete(context.Context, *v1.DeleteRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedImageUploadServiceServer) mustEmbedUnimplementedImageUploadServiceServer() {}
@@ -123,14 +124,14 @@ func RegisterImageUploadServiceServer(s grpc.ServiceRegistrar, srv ImageUploadSe
 }
 
 func _ImageUploadService_UploadStream_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(ImageUploadServiceServer).UploadStream(&grpc.GenericServerStream[UploadStreamRequest, UploadStreamResponse]{ServerStream: stream})
+	return srv.(ImageUploadServiceServer).UploadStream(&grpc.GenericServerStream[v1.UploadStreamRequest, v1.UploadStreamResponse]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type ImageUploadService_UploadStreamServer = grpc.ClientStreamingServer[UploadStreamRequest, UploadStreamResponse]
+type ImageUploadService_UploadStreamServer = grpc.ClientStreamingServer[v1.UploadStreamRequest, v1.UploadStreamResponse]
 
 func _ImageUploadService_GetUrl_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetUrlRequest)
+	in := new(v1.GetUrlRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -142,13 +143,13 @@ func _ImageUploadService_GetUrl_Handler(srv interface{}, ctx context.Context, de
 		FullMethod: ImageUploadService_GetUrl_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ImageUploadServiceServer).GetUrl(ctx, req.(*GetUrlRequest))
+		return srv.(ImageUploadServiceServer).GetUrl(ctx, req.(*v1.GetUrlRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _ImageUploadService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteRequest)
+	in := new(v1.DeleteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -160,7 +161,7 @@ func _ImageUploadService_Delete_Handler(srv interface{}, ctx context.Context, de
 		FullMethod: ImageUploadService_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ImageUploadServiceServer).Delete(ctx, req.(*DeleteRequest))
+		return srv.(ImageUploadServiceServer).Delete(ctx, req.(*v1.DeleteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

@@ -7,6 +7,7 @@
 package imageupload
 
 import (
+	v1 "github.com/itsLeonB/stortr-protos/gen/go/genericupload/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
@@ -25,26 +26,26 @@ var File_imageupload_v1_image_upload_service_proto protoreflect.FileDescriptor
 
 const file_imageupload_v1_image_upload_service_proto_rawDesc = "" +
 	"\n" +
-	")imageupload/v1/image_upload_service.proto\x12\x0eimageupload.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a)imageupload/v1/image_upload_message.proto2\xfb\x01\n" +
-	"\x12ImageUploadService\x12[\n" +
-	"\fUploadStream\x12#.imageupload.v1.UploadStreamRequest\x1a$.imageupload.v1.UploadStreamResponse(\x01\x12G\n" +
-	"\x06GetUrl\x12\x1d.imageupload.v1.GetUrlRequest\x1a\x1e.imageupload.v1.GetUrlResponse\x12?\n" +
-	"\x06Delete\x12\x1d.imageupload.v1.DeleteRequest\x1a\x16.google.protobuf.EmptyBEZCgithub.com/itsLeonB/stortr-protos/gen/go/imageupload/v1;imageuploadb\x06proto3"
+	")imageupload/v1/image_upload_service.proto\x12\x0eimageupload.v1\x1a-genericupload/v1/generic_upload_message.proto\x1a\x1bgoogle/protobuf/empty.proto2\x85\x02\n" +
+	"\x12ImageUploadService\x12_\n" +
+	"\fUploadStream\x12%.genericupload.v1.UploadStreamRequest\x1a&.genericupload.v1.UploadStreamResponse(\x01\x12K\n" +
+	"\x06GetUrl\x12\x1f.genericupload.v1.GetUrlRequest\x1a .genericupload.v1.GetUrlResponse\x12A\n" +
+	"\x06Delete\x12\x1f.genericupload.v1.DeleteRequest\x1a\x16.google.protobuf.EmptyBEZCgithub.com/itsLeonB/stortr-protos/gen/go/imageupload/v1;imageuploadb\x06proto3"
 
 var file_imageupload_v1_image_upload_service_proto_goTypes = []any{
-	(*UploadStreamRequest)(nil),  // 0: imageupload.v1.UploadStreamRequest
-	(*GetUrlRequest)(nil),        // 1: imageupload.v1.GetUrlRequest
-	(*DeleteRequest)(nil),        // 2: imageupload.v1.DeleteRequest
-	(*UploadStreamResponse)(nil), // 3: imageupload.v1.UploadStreamResponse
-	(*GetUrlResponse)(nil),       // 4: imageupload.v1.GetUrlResponse
-	(*emptypb.Empty)(nil),        // 5: google.protobuf.Empty
+	(*v1.UploadStreamRequest)(nil),  // 0: genericupload.v1.UploadStreamRequest
+	(*v1.GetUrlRequest)(nil),        // 1: genericupload.v1.GetUrlRequest
+	(*v1.DeleteRequest)(nil),        // 2: genericupload.v1.DeleteRequest
+	(*v1.UploadStreamResponse)(nil), // 3: genericupload.v1.UploadStreamResponse
+	(*v1.GetUrlResponse)(nil),       // 4: genericupload.v1.GetUrlResponse
+	(*emptypb.Empty)(nil),           // 5: google.protobuf.Empty
 }
 var file_imageupload_v1_image_upload_service_proto_depIdxs = []int32{
-	0, // 0: imageupload.v1.ImageUploadService.UploadStream:input_type -> imageupload.v1.UploadStreamRequest
-	1, // 1: imageupload.v1.ImageUploadService.GetUrl:input_type -> imageupload.v1.GetUrlRequest
-	2, // 2: imageupload.v1.ImageUploadService.Delete:input_type -> imageupload.v1.DeleteRequest
-	3, // 3: imageupload.v1.ImageUploadService.UploadStream:output_type -> imageupload.v1.UploadStreamResponse
-	4, // 4: imageupload.v1.ImageUploadService.GetUrl:output_type -> imageupload.v1.GetUrlResponse
+	0, // 0: imageupload.v1.ImageUploadService.UploadStream:input_type -> genericupload.v1.UploadStreamRequest
+	1, // 1: imageupload.v1.ImageUploadService.GetUrl:input_type -> genericupload.v1.GetUrlRequest
+	2, // 2: imageupload.v1.ImageUploadService.Delete:input_type -> genericupload.v1.DeleteRequest
+	3, // 3: imageupload.v1.ImageUploadService.UploadStream:output_type -> genericupload.v1.UploadStreamResponse
+	4, // 4: imageupload.v1.ImageUploadService.GetUrl:output_type -> genericupload.v1.GetUrlResponse
 	5, // 5: imageupload.v1.ImageUploadService.Delete:output_type -> google.protobuf.Empty
 	3, // [3:6] is the sub-list for method output_type
 	0, // [0:3] is the sub-list for method input_type
@@ -58,7 +59,6 @@ func file_imageupload_v1_image_upload_service_proto_init() {
 	if File_imageupload_v1_image_upload_service_proto != nil {
 		return
 	}
-	file_imageupload_v1_image_upload_message_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

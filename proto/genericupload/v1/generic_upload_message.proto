@@ -1,8 +1,10 @@
 syntax = "proto3";
 
-package imageupload.v1;
+package genericupload.v1;
 
-option go_package = "github.com/itsLeonB/stortr-protos/gen/go/imageupload/v1;imageupload";
+import "genericupload/v1/generic_upload_domain.proto";
+
+option go_package = "github.com/itsLeonB/stortr-protos/gen/go/genericupload/v1;genericupload";
 
 message UploadStreamRequest {
   oneof data {
@@ -11,18 +13,12 @@ message UploadStreamRequest {
   }
 }
 
-message Metadata {
-  string content_type = 1;
-  string object_key = 2;
-  int64 file_size = 3;
-}
-
 message UploadStreamResponse {
   string uri = 1;
 }
 
 message GetUrlRequest {
-  string object_key = 1;
+  FileIdentifier file_identifier = 1;
 }
 
 message GetUrlResponse {
@@ -30,5 +26,5 @@ message GetUrlResponse {
 }
 
 message DeleteRequest {
-  string object_key = 1;
+  FileIdentifier file_identifier = 1;
 }
