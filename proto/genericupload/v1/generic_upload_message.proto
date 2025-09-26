@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package genericupload.v1;
+
+import "genericupload/v1/generic_upload_domain.proto";
+
+option go_package = "github.com/itsLeonB/stortr-protos/gen/go/genericupload/v1;genericupload";
+
+message UploadStreamRequest {
+  oneof data {
+    Metadata metadata = 1;
+    bytes chunk = 2;
+  }
+}
+
+message UploadStreamResponse {
+  string uri = 1;
+}
+
+message GetUrlRequest {
+  FileIdentifier file_identifier = 1;
+}
+
+message GetUrlResponse {
+  string url = 1;
+}
+
+message DeleteRequest {
+  FileIdentifier file_identifier = 1;
+}
